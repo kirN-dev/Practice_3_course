@@ -1,22 +1,30 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LibraryArray
 {
-    public class Array
+    public class SingleDimensionalArray
     {
         private readonly Random _random = new Random();
+        private readonly SaveSystem _saveSystem = new SaveSystem();
+        private readonly string _defaultExtension = "array";
         private int[] _array;
 
-        public Array(int length)
+        public SingleDimensionalArray(int length)
         {
             _array = new int[length];
+            Extension = _defaultExtension;
+        }
+
+        public SingleDimensionalArray(int length, string extension)
+        {
+            _array = new int[length];
+            Extension = extension;
         }
 
         public int Length => _array.Length;
+        public string Extension { get; }
 
         public int this[int index]
         {
@@ -94,27 +102,12 @@ namespace LibraryArray
 
         public void Serialize(string path)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            using (FileStream stream = new FileStream(path, FileMode.Create))
-            {
-                formatter.Serialize(stream, _array);
-            }
+            _saveSystem.Save(_array, path);
         }
 
         public void Deserialize(string path)
         {
-            if (!File.Exists(path))
-            {
-                throw new ArgumentException();
-            }
-
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            using (FileStream stream = new FileStream(path, FileMode.Open))
-            {
-                _array = formatter.Deserialize(stream) as int[];
-            }
+            _saveSystem.Open(path);
         }
         #endregion
     }
