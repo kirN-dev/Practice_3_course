@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace LibraryArray
 {
     public static class Practice
     {
-        public static int SumEven(this LibraryArray.Array array)
+        public static int SumEven(this SingleDimensionalArray numbers)
         {
             int sum = 0;
 
-            foreach (var element in array.ToArray())
+            for (int i = 0; i < numbers.Length; i++)
             {
-                if (element % 2 == 0)
-                    sum += element;
+                if (numbers[i] % 2 == 0)
+                    sum += numbers[i];
             }
 
             return sum;
