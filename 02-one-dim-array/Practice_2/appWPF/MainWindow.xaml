@@ -13,8 +13,18 @@
         MinHeight="450"
         >
     
+    <Window.Resources>
+        <Style x:Key="Border">
+            <Setter Property="Control.BorderThickness" Value="1"/>
+            <Setter Property="Control.BorderBrush" Value="Gainsboro"/>
+            <Setter Property="Border.CornerRadius" Value="10"/>
+            <Setter Property="Control.Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -24,33 +34,46 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0">
-            
+        <Menu Grid.Row="0"
+              Grid.ColumnSpan="3">
+
         </Menu>
-        
+
         <DataGrid Grid.Row="1"
+                  Grid.ColumnSpan="3"
                   Margin="10,5"/>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="2"
+                Grid.Column="0"
+                Style="{StaticResource Border}">
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <StackPanel Margin="10">
 
-            <StackPanel Grid.Row="0"
-                        Margin="10">
                 <Label Content="1"/>
                 <TextBox/>
                 <Label Content="2"/>
                 <TextBox/>
                 <Button Content="Нажми на меня"
                         Margin="0,10"/>
+
             </StackPanel>
-        </Grid>
+        </Border>
+
+        <Border Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource Border}">
+            
+        <StackPanel Margin="10">
+
+            <Label Content="1"/>
+            <TextBox/>
+            <Label Content="2"/>
+            <TextBox/>
+            <Button Content="Нажми на меня"
+                    Margin="0,10"/>
+
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
