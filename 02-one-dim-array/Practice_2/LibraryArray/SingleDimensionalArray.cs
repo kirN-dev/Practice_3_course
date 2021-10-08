@@ -102,12 +102,12 @@ namespace LibraryArray
 
         public void Serialize(string path)
         {
-            _saveSystem.Save(_array, path);
+            _saveSystem.Save(_array, string.Concat(path, Extension));
         }
 
         public void Deserialize(string path)
         {
-            _saveSystem.Open(path);
+            _saveSystem.Open(string.Concat(path, Extension));
         }
         #endregion
     }
